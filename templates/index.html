@@ -20,6 +20,11 @@
         <p>{{ post.content }}</p>
 
         <p style="text-align: right;">
+            <a href="{{ url_for('update', post_id=post.id) }}"
+               style="background-color: #F0AD4E; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 14px; margin-right: 5px;">
+               ✏️ Edit
+            </a>
+
             <a href="{{ url_for('delete', post_id=post.id) }}"
                style="background-color: #D9534F; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 14px;"
                onclick="return confirm('Möchtest du diesen Beitrag wirklich löschen?');">
