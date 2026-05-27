@@ -21,6 +21,7 @@ def index():
     # 2. Die Liste an die index.html übergeben
     return render_template('index.html', posts=blog_posts)
 
+
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
@@ -36,10 +37,17 @@ def add():
             'id': new_id,
             'author': author,
             'title': title,
-            'content': content}
+            'content': content
+        }
 
         blog_posts.append(new_post)
         save_posts(blog_posts)
+
+        # 1. HIER: Nach dem Speichern zurück zur Startseite leiten!
+        return redirect(url_for('index'))
+
+    # 2. HIER: Wenn es ein GET-Request ist, das leere Formular anzeigen!
+    return render_template('add.html')
 
 @app.route('/delete/<int:post_id>')
 def delete(post_id):
